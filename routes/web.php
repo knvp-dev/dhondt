@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('pages.home');
 });
+
+Route::get('/bouwwerken', function(){
+    return view('pages.bouwwerken');
+});

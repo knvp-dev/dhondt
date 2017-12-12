@@ -1,4 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Open+Sans|Patua+One|Roboto);a.navbar-item:hover,
+a.navbar-item.is-active,
+.navbar-link:hover,
+.navbar-link.is-active {
+  background-color: transparent;
+  color: #3097D1;
+}
+
+.hero.is-primary .subtitle {
+  color: black !important;
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar {
+    min-height: 7.25rem;
+  }
+
+  .navbar-item img {
+    max-height: 3.75rem;
+  }
+}
+
+/*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 
 @-webkit-keyframes spinAround {
   from {
@@ -11452,4 +11474,108 @@ label.panel-block:hover {
 }
 
 
+
+* {
+  font-family: 'Open sans';
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.navbar-item {
+  font-size: .9em;
+}
+
+a.navbar-item:hover {
+  background-color: white;
+  color: #6b6b6b;
+}
+
+.navbar-logo {
+  padding: 0;
+  position: absolute;
+  background-color: white;
+  width: 90px;
+  height: 90px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.navbar-item img {
+  max-height: 4.75em !important;
+}
+
+.is-2em {
+  font-size: 2.5em;
+}
+
+h1.title {
+  font-family: "Patua One";
+  text-transform: uppercase;
+}
+
+.hero-content > .subtitle {
+  text-align: left;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-family: "Open Sans";
+  padding: 20px;
+}
+
+.has-white-bg {
+  background-color: white !important;
+  padding: 5px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.column {
+  margin: 20px;
+  padding: 20px;
+}
+
+p {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+section.section {
+  margin-bottom: 50px;
+}
+
+.parallax-1 {
+  /* The image used */
+  background-image: url("/images/hero_01.jpg") !important;
+  min-height: 250px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 1023px) {
+  .navbar {
+    position: relative !important;
+    min-height: 8rem;
+  }
+
+  .navbar-end {
+    display: none;
+  }
+
+  .navbar-item img {
+    max-height: 4.75rem;
+    margin-top: 15px;
+    width: 250px;
+  }
+}
 
