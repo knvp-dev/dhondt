@@ -19,8 +19,8 @@
 
 <section class="section">
 	<div class="container has-text-centered">
-		<h1 class="title">Bouwwerken</h1>
-		<h2 class="subtitle">Nieuwbouw en verbouwingen</h2>
+		<h1 class="title">Maatwerk</h1>
+		<h2 class="subtitle"></h2>
 		
         <div class="columns">
             <div class="column">

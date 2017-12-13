@@ -7,8 +7,17 @@
 		</div>
 
 		<div class="navbar-end">
-			<a class="navbar-item" href="/bouwwerken">
-				Bouwwerken
+			<a class="navbar-item" href="/metselwerken">
+				Metselwerken
+			</a>
+			<a class="navbar-item" href="/tegelwerken">
+				Tegelwerken
+			</a>
+			<a class="navbar-item" href="/maatwerk">
+				Maatwerk
+			</a>
+			<a class="navbar-item" href="/contact">
+				Contact
 			</a>
 		</div>
 

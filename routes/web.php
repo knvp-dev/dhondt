@@ -15,6 +15,17 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('/bouwwerken', function(){
-    return view('pages.bouwwerken');
+Route::get('/metselwerken', function(){
+    return view('pages.metselwerken');
 });
+
+Route::get('/tegelwerken', function(){
+    return view('pages.tegelwerken');
+});
+
+Route::get('/maatwerk', function(){
+    return view('pages.maatwerk');
+});
+
+Route::get('/contact', 'ContactController@index');
+Route::post('/maatwerk', 'ContactController@send');
