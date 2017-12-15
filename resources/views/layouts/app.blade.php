@@ -11,7 +11,13 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}"
+        <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}" />
+
+        <script>
+            window.Laravel = <?php echo json_encode([
+                'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
     </head>
     <body>
         
@@ -22,6 +28,7 @@
         </div>
 
         <!-- scripts -->
-        <script src="{{ mix('js/app.js') }}"
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
     </body>
 </html>

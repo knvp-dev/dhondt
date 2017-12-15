@@ -52,9 +52,21 @@
             </div>
             </div>
         </div>
-
-	</div>
+    </div>
 
 </section>
+
+<section class="section has-grey-background">
+	        <div class="container has-text-centered">
+
+                <h1 class="title">Realisaties</h1>
+
+                <div class="grid gallery">
+                    @for($i=1;$i<7;$i++)
+                    <a href="/images/test/{{ $i }}.jpg" class="grid-item"><img src="images/test/{{ $i }}.jpg" alt></a>
+                    @endfor
+                </div>
+            </div>
+        </section>
 
 @endsection

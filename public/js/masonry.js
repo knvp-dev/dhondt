@@ -4045,507 +4045,6 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ "./node_modules/ev-emitter/ev-emitter.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * EvEmitter v1.1.0
- * Lil' event emitter
- * MIT License
- */
-
-/* jshint unused: true, undef: true, strict: true */
-
-( function( global, factory ) {
-  // universal module definition
-  /* jshint strict: false */ /* globals define, module, window */
-  if ( true ) {
-    // AMD - RequireJS
-    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if ( typeof module == 'object' && module.exports ) {
-    // CommonJS - Browserify, Webpack
-    module.exports = factory();
-  } else {
-    // Browser globals
-    global.EvEmitter = factory();
-  }
-
-}( typeof window != 'undefined' ? window : this, function() {
-
-"use strict";
-
-function EvEmitter() {}
-
-var proto = EvEmitter.prototype;
-
-proto.on = function( eventName, listener ) {
-  if ( !eventName || !listener ) {
-    return;
-  }
-  // set events hash
-  var events = this._events = this._events || {};
-  // set listeners array
-  var listeners = events[ eventName ] = events[ eventName ] || [];
-  // only add once
-  if ( listeners.indexOf( listener ) == -1 ) {
-    listeners.push( listener );
-  }
-
-  return this;
-};
-
-proto.once = function( eventName, listener ) {
-  if ( !eventName || !listener ) {
-    return;
-  }
-  // add event
-  this.on( eventName, listener );
-  // set once flag
-  // set onceEvents hash
-  var onceEvents = this._onceEvents = this._onceEvents || {};
-  // set onceListeners object
-  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || {};
-  // set flag
-  onceListeners[ listener ] = true;
-
-  return this;
-};
-
-proto.off = function( eventName, listener ) {
-  var listeners = this._events && this._events[ eventName ];
-  if ( !listeners || !listeners.length ) {
-    return;
-  }
-  var index = listeners.indexOf( listener );
-  if ( index != -1 ) {
-    listeners.splice( index, 1 );
-  }
-
-  return this;
-};
-
-proto.emitEvent = function( eventName, args ) {
-  var listeners = this._events && this._events[ eventName ];
-  if ( !listeners || !listeners.length ) {
-    return;
-  }
-  // copy over to avoid interference if .off() in listener
-  listeners = listeners.slice(0);
-  args = args || [];
-  // once stuff
-  var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
-
-  for ( var i=0; i < listeners.length; i++ ) {
-    var listener = listeners[i]
-    var isOnce = onceListeners && onceListeners[ listener ];
-    if ( isOnce ) {
-      // remove listener
-      // remove before trigger to prevent recursion
-      this.off( eventName, listener );
-      // unset once flag
-      delete onceListeners[ listener ];
-    }
-    // trigger listener
-    listener.apply( this, args );
-  }
-
-  return this;
-};
-
-proto.allOff = function() {
-  delete this._events;
-  delete this._onceEvents;
-};
-
-return EvEmitter;
-
-}));
-
-
-/***/ }),
-
-/***/ "./node_modules/imagesLoaded/imagesloaded.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * imagesLoaded v4.1.3
- * JavaScript is all like "You images are done yet or what?"
- * MIT License
- */
-
-( function( window, factory ) { 'use strict';
-  // universal module definition
-
-  /*global define: false, module: false, require: false */
-
-  if ( true ) {
-    // AMD
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-      __webpack_require__("./node_modules/ev-emitter/ev-emitter.js")
-    ], __WEBPACK_AMD_DEFINE_RESULT__ = (function( EvEmitter ) {
-      return factory( window, EvEmitter );
-    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if ( typeof module == 'object' && module.exports ) {
-    // CommonJS
-    module.exports = factory(
-      window,
-      require('ev-emitter')
-    );
-  } else {
-    // browser global
-    window.imagesLoaded = factory(
-      window,
-      window.EvEmitter
-    );
-  }
-
-})( typeof window !== 'undefined' ? window : this,
-
-// --------------------------  factory -------------------------- //
-
-function factory( window, EvEmitter ) {
-
-'use strict';
-
-var $ = window.jQuery;
-var console = window.console;
-
-// -------------------------- helpers -------------------------- //
-
-// extend objects
-function extend( a, b ) {
-  for ( var prop in b ) {
-    a[ prop ] = b[ prop ];
-  }
-  return a;
-}
-
-// turn element or nodeList into an array
-function makeArray( obj ) {
-  var ary = [];
-  if ( Array.isArray( obj ) ) {
-    // use object if already an array
-    ary = obj;
-  } else if ( typeof obj.length == 'number' ) {
-    // convert nodeList to array
-    for ( var i=0; i < obj.length; i++ ) {
-      ary.push( obj[i] );
-    }
-  } else {
-    // array of single index
-    ary.push( obj );
-  }
-  return ary;
-}
-
-// -------------------------- imagesLoaded -------------------------- //
-
-/**
- * @param {Array, Element, NodeList, String} elem
- * @param {Object or Function} options - if function, use as callback
- * @param {Function} onAlways - callback function
- */
-function ImagesLoaded( elem, options, onAlways ) {
-  // coerce ImagesLoaded() without new, to be new ImagesLoaded()
-  if ( !( this instanceof ImagesLoaded ) ) {
-    return new ImagesLoaded( elem, options, onAlways );
-  }
-  // use elem as selector string
-  if ( typeof elem == 'string' ) {
-    elem = document.querySelectorAll( elem );
-  }
-
-  this.elements = makeArray( elem );
-  this.options = extend( {}, this.options );
-
-  if ( typeof options == 'function' ) {
-    onAlways = options;
-  } else {
-    extend( this.options, options );
-  }
-
-  if ( onAlways ) {
-    this.on( 'always', onAlways );
-  }
-
-  this.getImages();
-
-  if ( $ ) {
-    // add jQuery Deferred object
-    this.jqDeferred = new $.Deferred();
-  }
-
-  // HACK check async to allow time to bind listeners
-  setTimeout( function() {
-    this.check();
-  }.bind( this ));
-}
-
-ImagesLoaded.prototype = Object.create( EvEmitter.prototype );
-
-ImagesLoaded.prototype.options = {};
-
-ImagesLoaded.prototype.getImages = function() {
-  this.images = [];
-
-  // filter & find items if we have an item selector
-  this.elements.forEach( this.addElementImages, this );
-};
-
-/**
- * @param {Node} element
- */
-ImagesLoaded.prototype.addElementImages = function( elem ) {
-  // filter siblings
-  if ( elem.nodeName == 'IMG' ) {
-    this.addImage( elem );
-  }
-  // get background image on element
-  if ( this.options.background === true ) {
-    this.addElementBackgroundImages( elem );
-  }
-
-  // find children
-  // no non-element nodes, #143
-  var nodeType = elem.nodeType;
-  if ( !nodeType || !elementNodeTypes[ nodeType ] ) {
-    return;
-  }
-  var childImgs = elem.querySelectorAll('img');
-  // concat childElems to filterFound array
-  for ( var i=0; i < childImgs.length; i++ ) {
-    var img = childImgs[i];
-    this.addImage( img );
-  }
-
-  // get child background images
-  if ( typeof this.options.background == 'string' ) {
-    var children = elem.querySelectorAll( this.options.background );
-    for ( i=0; i < children.length; i++ ) {
-      var child = children[i];
-      this.addElementBackgroundImages( child );
-    }
-  }
-};
-
-var elementNodeTypes = {
-  1: true,
-  9: true,
-  11: true
-};
-
-ImagesLoaded.prototype.addElementBackgroundImages = function( elem ) {
-  var style = getComputedStyle( elem );
-  if ( !style ) {
-    // Firefox returns null if in a hidden iframe https://bugzil.la/548397
-    return;
-  }
-  // get url inside url("...")
-  var reURL = /url\((['"])?(.*?)\1\)/gi;
-  var matches = reURL.exec( style.backgroundImage );
-  while ( matches !== null ) {
-    var url = matches && matches[2];
-    if ( url ) {
-      this.addBackground( url, elem );
-    }
-    matches = reURL.exec( style.backgroundImage );
-  }
-};
-
-/**
- * @param {Image} img
- */
-ImagesLoaded.prototype.addImage = function( img ) {
-  var loadingImage = new LoadingImage( img );
-  this.images.push( loadingImage );
-};
-
-ImagesLoaded.prototype.addBackground = function( url, elem ) {
-  var background = new Background( url, elem );
-  this.images.push( background );
-};
-
-ImagesLoaded.prototype.check = function() {
-  var _this = this;
-  this.progressedCount = 0;
-  this.hasAnyBroken = false;
-  // complete if no images
-  if ( !this.images.length ) {
-    this.complete();
-    return;
-  }
-
-  function onProgress( image, elem, message ) {
-    // HACK - Chrome triggers event before object properties have changed. #83
-    setTimeout( function() {
-      _this.progress( image, elem, message );
-    });
-  }
-
-  this.images.forEach( function( loadingImage ) {
-    loadingImage.once( 'progress', onProgress );
-    loadingImage.check();
-  });
-};
-
-ImagesLoaded.prototype.progress = function( image, elem, message ) {
-  this.progressedCount++;
-  this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
-  // progress event
-  this.emitEvent( 'progress', [ this, image, elem ] );
-  if ( this.jqDeferred && this.jqDeferred.notify ) {
-    this.jqDeferred.notify( this, image );
-  }
-  // check if completed
-  if ( this.progressedCount == this.images.length ) {
-    this.complete();
-  }
-
-  if ( this.options.debug && console ) {
-    console.log( 'progress: ' + message, image, elem );
-  }
-};
-
-ImagesLoaded.prototype.complete = function() {
-  var eventName = this.hasAnyBroken ? 'fail' : 'done';
-  this.isComplete = true;
-  this.emitEvent( eventName, [ this ] );
-  this.emitEvent( 'always', [ this ] );
-  if ( this.jqDeferred ) {
-    var jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
-    this.jqDeferred[ jqMethod ]( this );
-  }
-};
-
-// --------------------------  -------------------------- //
-
-function LoadingImage( img ) {
-  this.img = img;
-}
-
-LoadingImage.prototype = Object.create( EvEmitter.prototype );
-
-LoadingImage.prototype.check = function() {
-  // If complete is true and browser supports natural sizes,
-  // try to check for image status manually.
-  var isComplete = this.getIsImageComplete();
-  if ( isComplete ) {
-    // report based on naturalWidth
-    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
-    return;
-  }
-
-  // If none of the checks above matched, simulate loading on detached element.
-  this.proxyImage = new Image();
-  this.proxyImage.addEventListener( 'load', this );
-  this.proxyImage.addEventListener( 'error', this );
-  // bind to image as well for Firefox. #191
-  this.img.addEventListener( 'load', this );
-  this.img.addEventListener( 'error', this );
-  this.proxyImage.src = this.img.src;
-};
-
-LoadingImage.prototype.getIsImageComplete = function() {
-  return this.img.complete && this.img.naturalWidth !== undefined;
-};
-
-LoadingImage.prototype.confirm = function( isLoaded, message ) {
-  this.isLoaded = isLoaded;
-  this.emitEvent( 'progress', [ this, this.img, message ] );
-};
-
-// ----- events ----- //
-
-// trigger specified handler for event type
-LoadingImage.prototype.handleEvent = function( event ) {
-  var method = 'on' + event.type;
-  if ( this[ method ] ) {
-    this[ method ]( event );
-  }
-};
-
-LoadingImage.prototype.onload = function() {
-  this.confirm( true, 'onload' );
-  this.unbindEvents();
-};
-
-LoadingImage.prototype.onerror = function() {
-  this.confirm( false, 'onerror' );
-  this.unbindEvents();
-};
-
-LoadingImage.prototype.unbindEvents = function() {
-  this.proxyImage.removeEventListener( 'load', this );
-  this.proxyImage.removeEventListener( 'error', this );
-  this.img.removeEventListener( 'load', this );
-  this.img.removeEventListener( 'error', this );
-};
-
-// -------------------------- Background -------------------------- //
-
-function Background( url, element ) {
-  this.url = url;
-  this.element = element;
-  this.img = new Image();
-}
-
-// inherit LoadingImage prototype
-Background.prototype = Object.create( LoadingImage.prototype );
-
-Background.prototype.check = function() {
-  this.img.addEventListener( 'load', this );
-  this.img.addEventListener( 'error', this );
-  this.img.src = this.url;
-  // check if image is already complete
-  var isComplete = this.getIsImageComplete();
-  if ( isComplete ) {
-    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
-    this.unbindEvents();
-  }
-};
-
-Background.prototype.unbindEvents = function() {
-  this.img.removeEventListener( 'load', this );
-  this.img.removeEventListener( 'error', this );
-};
-
-Background.prototype.confirm = function( isLoaded, message ) {
-  this.isLoaded = isLoaded;
-  this.emitEvent( 'progress', [ this, this.element, message ] );
-};
-
-// -------------------------- jQuery -------------------------- //
-
-ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
-  jQuery = jQuery || window.jQuery;
-  if ( !jQuery ) {
-    return;
-  }
-  // set local variable
-  $ = jQuery;
-  // $().imagesLoaded()
-  $.fn.imagesLoaded = function( options, callback ) {
-    var instance = new ImagesLoaded( this, options, callback );
-    return instance.jqDeferred.promise( $(this) );
-  };
-};
-// try making plugin
-ImagesLoaded.makeJQueryPlugin();
-
-// --------------------------  -------------------------- //
-
-return ImagesLoaded;
-
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/is-buffer/index.js":
 /***/ (function(module, exports) {
 
@@ -43323,7 +42822,6 @@ module.exports = function(module) {
  */
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
-__webpack_require__("./node_modules/imagesLoaded/imagesloaded.js");
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
@@ -43343,10 +42841,9 @@ $('.grid').imagesLoaded(function () {
 
     $('.grid').masonry({
         // options...
-        itemSelector: '.grid-item'
+        itemSelector: '.grid-item',
+        columnWidth: 150
     });
-
-    baguetteBox.run('.grid');
 });
 
 /***/ }),
@@ -43459,6 +42956,344 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/vendor/baguettebox.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*!
+ * baguetteBox.js
+ * @author  feimosi
+ * @version 1.8.1
+ * @url https://github.com/feimosi/baguetteBox.js
+ */
+!function (t, e) {
+  "use strict";
+   true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (e),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? module.exports = e() : t.baguetteBox = e();
+}(this, function () {
+  "use strict";
+  function t(t, n) {
+    M.transforms = k(), M.svg = w(), i(), o(t), e(t, n);
+  }function e(t, e) {
+    var n = document.querySelectorAll(t),
+        o = { galleries: [], nodeList: n };U[t] = o, [].forEach.call(n, function (t) {
+      e && e.filter && (V = e.filter);var n = [];if (n = "A" === t.tagName ? [t] : t.getElementsByTagName("a"), n = [].filter.call(n, function (t) {
+        return V.test(t.href);
+      }), 0 !== n.length) {
+        var i = [];[].forEach.call(n, function (t, n) {
+          var o = function o(t) {
+            t.preventDefault ? t.preventDefault() : t.returnValue = !1, u(i, e), c(n);
+          },
+              a = { eventHandler: o, imageElement: t };E(t, "click", o), i.push(a);
+        }), o.galleries.push(i);
+      }
+    });
+  }function n() {
+    for (var t in U) {
+      U.hasOwnProperty(t) && o(t);
+    }
+  }function o(t) {
+    if (U.hasOwnProperty(t)) {
+      var e = U[t].galleries;[].forEach.call(e, function (t) {
+        [].forEach.call(t, function (t) {
+          B(t.imageElement, "click", t.eventHandler);
+        }), R === t && (R = []);
+      }), delete U[t];
+    }
+  }function i() {
+    return (S = T("baguetteBox-overlay")) ? (P = T("baguetteBox-slider"), F = T("previous-button"), H = T("next-button"), void (L = T("close-button"))) : (S = N("div"), S.setAttribute("role", "dialog"), S.id = "baguetteBox-overlay", document.getElementsByTagName("body")[0].appendChild(S), P = N("div"), P.id = "baguetteBox-slider", S.appendChild(P), F = N("button"), F.setAttribute("type", "button"), F.id = "previous-button", F.setAttribute("aria-label", "Previous"), F.innerHTML = M.svg ? I : "&lt;", S.appendChild(F), H = N("button"), H.setAttribute("type", "button"), H.id = "next-button", H.setAttribute("aria-label", "Next"), H.innerHTML = M.svg ? Y : "&gt;", S.appendChild(H), L = N("button"), L.setAttribute("type", "button"), L.id = "close-button", L.setAttribute("aria-label", "Close"), L.innerHTML = M.svg ? q : "&times;", S.appendChild(L), F.className = H.className = L.className = "baguetteBox-button", void r());
+  }function a(t) {
+    switch (t.keyCode) {case 37:
+        v();break;case 39:
+        h();break;case 27:
+        p();}
+  }function r() {
+    E(S, "click", J), E(F, "click", K), E(H, "click", Q), E(L, "click", Z), E(S, "touchstart", $), E(S, "touchmove", _), E(S, "touchend", tt), E(document, "focus", et, !0);
+  }function l() {
+    B(S, "click", J), B(F, "click", K), B(H, "click", Q), B(L, "click", Z), B(S, "touchstart", $), B(S, "touchmove", _), B(S, "touchend", tt), B(document, "focus", et, !0);
+  }function u(t, e) {
+    if (R !== t) {
+      for (R = t, s(e); P.firstChild;) {
+        P.removeChild(P.firstChild);
+      }W.length = 0;for (var n, o = [], i = [], a = 0; a < t.length; a++) {
+        n = N("div"), n.className = "full-image", n.id = "baguette-img-" + a, W.push(n), o.push("baguetteBox-figure-" + a), i.push("baguetteBox-figcaption-" + a), P.appendChild(W[a]);
+      }S.setAttribute("aria-labelledby", o.join(" ")), S.setAttribute("aria-describedby", i.join(" "));
+    }
+  }function s(t) {
+    t || (t = {});for (var e in X) {
+      j[e] = X[e], "undefined" != typeof t[e] && (j[e] = t[e]);
+    }P.style.transition = P.style.webkitTransition = "fadeIn" === j.animation ? "opacity .4s ease" : "slideIn" === j.animation ? "" : "none", "auto" === j.buttons && ("ontouchstart" in window || 1 === R.length) && (j.buttons = !1), F.style.display = H.style.display = j.buttons ? "" : "none";try {
+      S.style.backgroundColor = j.overlayBackgroundColor;
+    } catch (t) {}
+  }function c(t) {
+    j.noScrollbars && (document.documentElement.style.overflowY = "hidden", document.body.style.overflowY = "scroll"), "block" !== S.style.display && (E(document, "keydown", a), z = t, D = { count: 0, startX: null, startY: null }, m(z, function () {
+      x(z), C(z);
+    }), y(), S.style.display = "block", j.fullScreen && f(), setTimeout(function () {
+      S.className = "visible", j.afterShow && j.afterShow();
+    }, 50), j.onChange && j.onChange(z, W.length), G = document.activeElement, d());
+  }function d() {
+    j.buttons ? F.focus() : L.focus();
+  }function f() {
+    S.requestFullscreen ? S.requestFullscreen() : S.webkitRequestFullscreen ? S.webkitRequestFullscreen() : S.mozRequestFullScreen && S.mozRequestFullScreen();
+  }function g() {
+    document.exitFullscreen ? document.exitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen();
+  }function p() {
+    j.noScrollbars && (document.documentElement.style.overflowY = "auto", document.body.style.overflowY = "auto"), "none" !== S.style.display && (B(document, "keydown", a), S.className = "", setTimeout(function () {
+      S.style.display = "none", g(), j.afterHide && j.afterHide();
+    }, 500), G.focus());
+  }function m(t, e) {
+    var n = W[t];if ("undefined" != typeof n) {
+      if (n.getElementsByTagName("img")[0]) return void (e && e());var o = R[t].imageElement,
+          i = o.getElementsByTagName("img")[0],
+          a = "function" == typeof j.captions ? j.captions.call(R, o) : o.getAttribute("data-caption") || o.title,
+          r = b(o),
+          l = N("figure");if (l.id = "baguetteBox-figure-" + t, l.innerHTML = '<div class="baguetteBox-spinner"><div class="baguetteBox-double-bounce1"></div><div class="baguetteBox-double-bounce2"></div></div>', j.captions && a) {
+        var u = N("figcaption");u.id = "baguetteBox-figcaption-" + t, u.innerHTML = a, l.appendChild(u);
+      }n.appendChild(l);var s = N("img");s.onload = function () {
+        var n = document.querySelector("#baguette-img-" + t + " .baguetteBox-spinner");l.removeChild(n), !j.async && e && e();
+      }, s.setAttribute("src", r), s.alt = i ? i.alt || "" : "", j.titleTag && a && (s.title = a), l.appendChild(s), j.async && e && e();
+    }
+  }function b(t) {
+    var e = t.href;if (t.dataset) {
+      var n = [];for (var o in t.dataset) {
+        "at-" !== o.substring(0, 3) || isNaN(o.substring(3)) || (n[o.replace("at-", "")] = t.dataset[o]);
+      }for (var i = Object.keys(n).sort(function (t, e) {
+        return parseInt(t, 10) < parseInt(e, 10) ? -1 : 1;
+      }), a = window.innerWidth * window.devicePixelRatio, r = 0; r < i.length - 1 && i[r] < a;) {
+        r++;
+      }e = n[i[r]] || e;
+    }return e;
+  }function h() {
+    var t;return z <= W.length - 2 ? (z++, y(), x(z), t = !0) : j.animation && (P.className = "bounce-from-right", setTimeout(function () {
+      P.className = "";
+    }, 400), t = !1), j.onChange && j.onChange(z, W.length), t;
+  }function v() {
+    var t;return z >= 1 ? (z--, y(), C(z), t = !0) : j.animation && (P.className = "bounce-from-left", setTimeout(function () {
+      P.className = "";
+    }, 400), t = !1), j.onChange && j.onChange(z, W.length), t;
+  }function y() {
+    var t = 100 * -z + "%";"fadeIn" === j.animation ? (P.style.opacity = 0, setTimeout(function () {
+      M.transforms ? P.style.transform = P.style.webkitTransform = "translate3d(" + t + ",0,0)" : P.style.left = t, P.style.opacity = 1;
+    }, 400)) : M.transforms ? P.style.transform = P.style.webkitTransform = "translate3d(" + t + ",0,0)" : P.style.left = t;
+  }function k() {
+    var t = N("div");return "undefined" != typeof t.style.perspective || "undefined" != typeof t.style.webkitPerspective;
+  }function w() {
+    var t = N("div");return t.innerHTML = "<svg/>", "http://www.w3.org/2000/svg" === (t.firstChild && t.firstChild.namespaceURI);
+  }function x(t) {
+    t - z >= j.preload || m(t + 1, function () {
+      x(t + 1);
+    });
+  }function C(t) {
+    z - t >= j.preload || m(t - 1, function () {
+      C(t - 1);
+    });
+  }function E(t, e, n, o) {
+    t.addEventListener ? t.addEventListener(e, n, o) : t.attachEvent("on" + e, n);
+  }function B(t, e, n, o) {
+    t.removeEventListener ? t.removeEventListener(e, n, o) : t.detachEvent("on" + e, n);
+  }function T(t) {
+    return document.getElementById(t);
+  }function N(t) {
+    return document.createElement(t);
+  }function A() {
+    l(), n(), B(document, "keydown", a), document.getElementsByTagName("body")[0].removeChild(document.getElementById("baguetteBox-overlay")), U = {}, R = [], z = 0;
+  }var S,
+      P,
+      F,
+      H,
+      L,
+      I = '<svg width="44" height="60"><polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4"stroke-linecap="butt" fill="none" stroke-linejoin="round"/></svg>',
+      Y = '<svg width="44" height="60"><polyline points="14 10 34 30 14 50" stroke="rgba(255,255,255,0.5)" stroke-width="4"stroke-linecap="butt" fill="none" stroke-linejoin="round"/></svg>',
+      q = '<svg width="30" height="30"><g stroke="rgb(160,160,160)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"/><line x1="5" y1="25" x2="25" y2="5"/></g></svg>',
+      j = {},
+      X = { captions: !0, fullScreen: !1, noScrollbars: !1, titleTag: !1, buttons: "auto", async: !1, preload: 2, animation: "slideIn", afterShow: null, afterHide: null, onChange: null, overlayBackgroundColor: "rgba(0,0,0,.8)" },
+      M = {},
+      R = [],
+      z = 0,
+      D = {},
+      O = !1,
+      V = /.+\.(gif|jpe?g|png|webp)/i,
+      U = {},
+      W = [],
+      G = null,
+      J = function J(t) {
+    t.target.id.indexOf("baguette-img") !== -1 && p();
+  },
+      K = function K(t) {
+    t.stopPropagation ? t.stopPropagation() : t.cancelBubble = !0, v();
+  },
+      Q = function Q(t) {
+    t.stopPropagation ? t.stopPropagation() : t.cancelBubble = !0, h();
+  },
+      Z = function Z(t) {
+    t.stopPropagation ? t.stopPropagation() : t.cancelBubble = !0, p();
+  },
+      $ = function $(t) {
+    D.count++, D.count > 1 && (D.multitouch = !0), D.startX = t.changedTouches[0].pageX, D.startY = t.changedTouches[0].pageY;
+  },
+      _ = function _(t) {
+    if (!O && !D.multitouch) {
+      t.preventDefault ? t.preventDefault() : t.returnValue = !1;var e = t.touches[0] || t.changedTouches[0];e.pageX - D.startX > 40 ? (O = !0, v()) : e.pageX - D.startX < -40 ? (O = !0, h()) : D.startY - e.pageY > 100 && p();
+    }
+  },
+      tt = function tt() {
+    D.count--, D.count <= 0 && (D.multitouch = !1), O = !1;
+  },
+      et = function et(t) {
+    "block" !== S.style.display || S.contains(t.target) || (t.stopPropagation(), d());
+  };return [].forEach || (Array.prototype.forEach = function (t, e) {
+    for (var n = 0; n < this.length; n++) {
+      t.call(e, this[n], n, this);
+    }
+  }), [].filter || (Array.prototype.filter = function (t, e, n, o, i) {
+    for (n = this, o = [], i = 0; i < n.length; i++) {
+      t.call(e, n[i], i, n) && o.push(n[i]);
+    }return o;
+  }), { run: t, destroy: A, showNext: h, showPrevious: v };
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/vendor/masonry.js":
+/***/ (function(module, exports) {
+
+/**
+ * jQuery Masonry v2.1.08
+ * A dynamic layout plugin for jQuery
+ * The flip-side of CSS Floats
+ * http://masonry.desandro.com
+ *
+ * Licensed under the MIT license.
+ * Copyright 2012 David DeSandro
+ */
+(function (e, t, n) {
+  "use strict";
+  var r = t.event,
+      i;r.special.smartresize = { setup: function setup() {
+      t(this).bind("resize", r.special.smartresize.handler);
+    }, teardown: function teardown() {
+      t(this).unbind("resize", r.special.smartresize.handler);
+    }, handler: function handler(e, t) {
+      var n = this,
+          s = arguments;e.type = "smartresize", i && clearTimeout(i), i = setTimeout(function () {
+        r.dispatch.apply(n, s);
+      }, t === "execAsap" ? 0 : 100);
+    } }, t.fn.smartresize = function (e) {
+    return e ? this.bind("smartresize", e) : this.trigger("smartresize", ["execAsap"]);
+  }, t.Mason = function (e, n) {
+    this.element = t(n), this._create(e), this._init();
+  }, t.Mason.settings = { isResizable: !0, isAnimated: !1, animationOptions: { queue: !1, duration: 500 }, gutterWidth: 0, isRTL: !1, isFitWidth: !1, containerStyle: { position: "relative" } }, t.Mason.prototype = { _filterFindBricks: function _filterFindBricks(e) {
+      var t = this.options.itemSelector;return t ? e.filter(t).add(e.find(t)) : e;
+    }, _getBricks: function _getBricks(e) {
+      var t = this._filterFindBricks(e).css({ position: "absolute" }).addClass("masonry-brick");return t;
+    }, _create: function _create(n) {
+      this.options = t.extend(!0, {}, t.Mason.settings, n), this.styleQueue = [];var r = this.element[0].style;this.originalStyle = { height: r.height || "" };var i = this.options.containerStyle;for (var s in i) {
+        this.originalStyle[s] = r[s] || "";
+      }this.element.css(i), this.horizontalDirection = this.options.isRTL ? "right" : "left";var o = this.element.css("padding-" + this.horizontalDirection),
+          u = this.element.css("padding-top");this.offset = { x: o ? parseInt(o, 10) : 0, y: u ? parseInt(u, 10) : 0 }, this.isFluid = this.options.columnWidth && typeof this.options.columnWidth == "function";var a = this;setTimeout(function () {
+        a.element.addClass("masonry");
+      }, 0), this.options.isResizable && t(e).bind("smartresize.masonry", function () {
+        a.resize();
+      }), this.reloadItems();
+    }, _init: function _init(e) {
+      this._getColumns(), this._reLayout(e);
+    }, option: function option(e, n) {
+      t.isPlainObject(e) && (this.options = t.extend(!0, this.options, e));
+    }, layout: function layout(e, t) {
+      for (var n = 0, r = e.length; n < r; n++) {
+        this._placeBrick(e[n]);
+      }var i = {};i.height = Math.max.apply(Math, this.colYs);if (this.options.isFitWidth) {
+        var s = 0;n = this.cols;while (--n) {
+          if (this.colYs[n] !== 0) break;s++;
+        }i.width = (this.cols - s) * this.columnWidth - this.options.gutterWidth;
+      }this.styleQueue.push({ $el: this.element, style: i });var o = this.isLaidOut ? this.options.isAnimated ? "animate" : "css" : "css",
+          u = this.options.animationOptions,
+          a;for (n = 0, r = this.styleQueue.length; n < r; n++) {
+        a = this.styleQueue[n], a.$el[o](a.style, u);
+      }this.styleQueue = [], t && t.call(e), this.isLaidOut = !0;
+    }, _getColumns: function _getColumns() {
+      var e = this.options.isFitWidth ? this.element.parent() : this.element,
+          t = e.width();this.columnWidth = this.isFluid ? this.options.columnWidth(t) : this.options.columnWidth || this.$bricks.outerWidth(!0) || t, this.columnWidth += this.options.gutterWidth, this.cols = Math.floor((t + this.options.gutterWidth) / this.columnWidth), this.cols = Math.max(this.cols, 1);
+    }, _placeBrick: function _placeBrick(e) {
+      var n = t(e),
+          r,
+          i,
+          s,
+          o,
+          u;r = Math.ceil(n.outerWidth(!0) / this.columnWidth), r = Math.min(r, this.cols);if (r === 1) s = this.colYs;else {
+        i = this.cols + 1 - r, s = [];for (u = 0; u < i; u++) {
+          o = this.colYs.slice(u, u + r), s[u] = Math.max.apply(Math, o);
+        }
+      }var a = Math.min.apply(Math, s),
+          f = 0;for (var l = 0, c = s.length; l < c; l++) {
+        if (s[l] === a) {
+          f = l;break;
+        }
+      }var h = { top: a + this.offset.y };h[this.horizontalDirection] = this.columnWidth * f + this.offset.x, this.styleQueue.push({ $el: n, style: h });var p = a + n.outerHeight(!0),
+          d = this.cols + 1 - c;for (l = 0; l < d; l++) {
+        this.colYs[f + l] = p;
+      }
+    }, resize: function resize() {
+      var e = this.cols;this._getColumns(), (this.isFluid || this.cols !== e) && this._reLayout();
+    }, _reLayout: function _reLayout(e) {
+      var t = this.cols;this.colYs = [];while (t--) {
+        this.colYs.push(0);
+      }this.layout(this.$bricks, e);
+    }, reloadItems: function reloadItems() {
+      this.$bricks = this._getBricks(this.element.children());
+    }, reload: function reload(e) {
+      this.reloadItems(), this._init(e);
+    }, appended: function appended(e, t, n) {
+      if (t) {
+        this._filterFindBricks(e).css({ top: this.element.height() });var r = this;setTimeout(function () {
+          r._appended(e, n);
+        }, 1);
+      } else this._appended(e, n);
+    }, _appended: function _appended(e, t) {
+      var n = this._getBricks(e);this.$bricks = this.$bricks.add(n), this.layout(n, t);
+    }, remove: function remove(e) {
+      this.$bricks = this.$bricks.not(e), e.remove();
+    }, destroy: function destroy() {
+      this.$bricks.removeClass("masonry-brick").each(function () {
+        this.style.position = "", this.style.top = "", this.style.left = "";
+      });var n = this.element[0].style;for (var r in this.originalStyle) {
+        n[r] = this.originalStyle[r];
+      }this.element.unbind(".masonry").removeClass("masonry").removeData("masonry"), t(e).unbind(".masonry");
+    } }, t.fn.imagesLoaded = function (e) {
+    function u() {
+      e.call(n, r);
+    }function a(e) {
+      var n = e.target;n.src !== s && t.inArray(n, o) === -1 && (o.push(n), --i <= 0 && (setTimeout(u), r.unbind(".imagesLoaded", a)));
+    }var n = this,
+        r = n.find("img").add(n.filter("img")),
+        i = r.length,
+        s = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",
+        o = [];return i || u(), r.bind("load.imagesLoaded error.imagesLoaded", a).each(function () {
+      var e = this.src;this.src = s, this.src = e;
+    }), n;
+  };var s = function s(t) {
+    e.console && e.console.error(t);
+  };t.fn.masonry = function (e) {
+    if (typeof e == "string") {
+      var n = Array.prototype.slice.call(arguments, 1);this.each(function () {
+        var r = t.data(this, "masonry");if (!r) {
+          s("cannot call methods on masonry prior to initialization; attempted to call method '" + e + "'");return;
+        }if (!t.isFunction(r[e]) || e.charAt(0) === "_") {
+          s("no such method '" + e + "' for masonry instance");return;
+        }r[e].apply(r, n);
+      });
+    } else this.each(function () {
+      var n = t.data(this, "masonry");n ? (n.option(e || {}), n._init()) : t.data(this, "masonry", new t.Mason(e, this));
+    });return this;
+  };
+})(window, jQuery);
+
+/***/ }),
+
 /***/ "./resources/assets/sass/app.scss":
 /***/ (function(module, exports) {
 
@@ -43469,7 +43304,9 @@ module.exports = Component.exports
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__("./resources/assets/js/vendor/masonry.js");
 __webpack_require__("./resources/assets/js/app.js");
+__webpack_require__("./resources/assets/js/vendor/baguettebox.js");
 module.exports = __webpack_require__("./resources/assets/sass/app.scss");
 
 

@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\File;
+use Illuminate\Filesystem\Filesystem;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/metselwerken', function(){
+    
+
     return view('pages.metselwerken');
 });
 

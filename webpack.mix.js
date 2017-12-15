@@ -12,5 +12,10 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+   .scripts([
+       'resources/assets/js/vendor/imagesloaded.js',
+       'resources/assets/js/vendor/masonry.js',
+       'resources/assets/js/vendor/baguettebox.js'
+    ], 'public/js/vendor.js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .version();
