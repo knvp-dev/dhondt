@@ -6,9 +6,9 @@
 				<br><br>
 				<p>
 				Nikolaj d'hondt <br>
-				 <br>
-				 <br>
-				 <br>
+				 Pieter Deconinckstraat 8<br>
+				 8770 Ingelmunster<br>
+				 BTW: BE0543691235<br>
 				</p>
 			</div>
 		</div>

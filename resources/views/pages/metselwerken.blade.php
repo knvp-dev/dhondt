@@ -2,7 +2,14 @@
 
 @section('content')
 
-<section class="hero is-medium is-primary is-bold parallax-1">
+<imageslider 
+    :slides='slides1' 
+    :animate='true' 
+    :delay='8000'>
+</imageslider>
+
+
+<!-- <section class="hero is-medium is-primary is-bold parallax-1">
 {{--  <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -15,13 +22,15 @@
     </div>
 </div>
 </div>  --}}
-</section>
+</section> -->
 
 <section class="section">
 	<div class="container has-text-centered">
 		<h1 class="title">Metselwerken</h1>
 		<h2 class="subtitle">Nieuwbouw en verbouwingen</h2>
-		
+        <div class="divider"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>
+        <section class="section">
+        
         <div class="columns">
             <div class="column text-column">
                 <h2>Verbouwingen</h2>
@@ -51,6 +60,7 @@
                 </p>
             </div>
             </div>
+            </section>
         </div>
     </div>
 
@@ -62,8 +72,8 @@
                 <h1 class="title">Realisaties</h1>
 
                 <div class="grid gallery">
-                    @for($i=1;$i<7;$i++)
-                    <a href="/images/test/{{ $i }}.jpg" class="grid-item"><img src="images/test/{{ $i }}.jpg" alt></a>
+                    @for($i=1;$i<15;$i++)
+                    <a href="/images/fotos/metselwerken/{{ $i }}.jpg" class="grid-item"><img src="images/fotos/metselwerken/{{ $i }}.jpg" alt></a>
                     @endfor
                 </div>
             </div>

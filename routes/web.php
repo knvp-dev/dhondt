@@ -15,12 +15,11 @@ use Illuminate\Filesystem\Filesystem;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return redirect('/metselwerken');
 });
 
 Route::get('/metselwerken', function(){
     
-
     return view('pages.metselwerken');
 });
 

@@ -16,10 +16,30 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('imageslider', require('./components/ImageSlider.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        slides1: [
+            { id: 1, src: '/images/slides/metselwerken/1.jpg', title: "Nikolaj D'hondt", description: 'Alle nieuwbouw, verbouwingen, vloeren, tegels en maatwerk.', url: null },
+            { id: 2, src: '/images/slides/metselwerken/2.jpg', title: 'image 2', description: 'this is the second image', url: null },
+            { id: 3, src: '/images/slides/metselwerken/3.jpg', title: 'image 3', description: 'this is the third image', url: null }
+        ],
+        slides2: [
+            { id: 1, src: '/images/slides/maatwerk/1.jpg', title: 'image 1', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, a excepturi fugiat nihil in deserunt, natus possimus est atque rem incidunt soluta. Itaque quis dolor perspiciatis natus vel, voluptate possimus.', url: null },
+            { id: 2, src: '/images/slides/maatwerk/2.jpg', title: 'image 2', description: 'this is the second image', url: null },
+            { id: 3, src: '/images/slides/maatwerk/3.jpg', title: 'image 3', description: 'this is the third image', url: null }
+        ],
+        slides3: [
+            { id: 1, src: '/images/slides/tegelwerken/1.jpg', title: 'image 1', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, a excepturi fugiat nihil in deserunt, natus possimus est atque rem incidunt soluta. Itaque quis dolor perspiciatis natus vel, voluptate possimus.', url: null },
+            { id: 2, src: '/images/slides/tegelwerken/2.jpg', title: 'image 2', description: 'this is the second image', url: null },
+            { id: 3, src: '/images/slides/tegelwerken/3.jpg', title: 'image 3', description: 'this is the third image', url: null }
+        ]
+
+    }
+
 });
 
 $('.grid').imagesLoaded( function(){

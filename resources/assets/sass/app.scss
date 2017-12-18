@@ -7,6 +7,9 @@
 @import "variables";
 @import "overwrites";
 
+// Font-awesome
+@import "~font-awesome/css/font-awesome";
+
 // Bulma
 @import "~bulma/css/bulma";
 
@@ -35,6 +38,26 @@ a.navbar-item:hover{
     height: 90px;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    z-index:9000;
+}
+
+section.section{
+  margin-bottom:0!important;
+}
+
+.divider{
+  color:#dcdcdc;
+  font-size:.8em;
+  text-align: center;
+  padding:20px;
+}
+
+ul{
+    text-align: left;
+}
+
+.mb-20{
+  margin-bottom:20px;
 }
 
 .navbar-item img{
@@ -102,6 +125,30 @@ section.section{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+.parallax-2 { 
+	/* The image used */
+	background-image: url("/images/hero_02.jpg")!important;
+    min-height:250px;
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.parallax-3 { 
+	/* The image used */
+	background-image: url("/images/hero_03.jpg")!important;
+    min-height:250px;
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: bottom;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
 
 .text-column h2{
 	font-size: 1.2em;
