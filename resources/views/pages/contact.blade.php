@@ -6,24 +6,28 @@
 
 	<section class="section">
 		<div class="container">
-			<h1 class="title has-text-centered">{{ __('content.contact.title') }}</h1>
-			<p class="has-text-centered"><i class="fa fa-circle dot-seperator"></i> <br> {{ __('content.contact.p1') }}</p>
+
+			<div class="has-text-centered">
+			<h1 class="title">Contact</h1>
+			<h2 class="subtitle">Contacteer ons via onderstaand formulier.</h2>
+			</div>
+			<div class="divider"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>
 			<div class="columns">
 				<div class="column">
-					<img src="images/icon.jpg" alt="akcelon" class="form-logo">
+					<img src="images/logo.svg" alt="d'hondt" class="form-logo" width="400px">
 				</div>
 
 				<div class="column">
 
 					<div class="notification is-primary" v-if="success">
-						{{ __('content.contact.success') }}
+						Bedankt, het formulier werd succesvol verzonden.
 					</div>
 
 					<form action="#" @submit.prevent="sendForm">
 						<div class="field">
-							<label class="label">{{ __('content.contact.name') }}</label>
+							<label class="label">Naam</label>
 							<div class="control">
-								<input class="input" type="text" placeholder="{{ __('content.contact.name') }}" name="name" v-model="formdata.name" required>
+								<input class="input" type="text" placeholder="Naam" name="name"  v-model="formdata.name" required>
 							</div>
 							<p class="help is-danger">{{ $errors->first('name') }}</p>
 						</div>
@@ -37,18 +41,18 @@
 						</div>
 
 						<div class="field">
-							<label class="label">{{ __('content.contact.subject') }}</label>
+							<label class="label">Onderwerp</label>
 							<div class="control">
-								<input class="input" type="text" placeholder="{{ __('content.contact.subject') }}" name="subject" v-model="formdata.subject" required>
+								<input class="input" type="text" placeholder="Onderwerp" name="subject"  v-model="formdata.subject" required>
 							</div>
 							<p class="help is-danger">{{ $errors->first('subject') }}</p>
 						</div>
 
 						<div class="field">
-							<label class="label">{{ __('content.contact.message') }}</label>
+							<label class="label">Bericht</label>
 							<div class="control">
 								<div class="control">
-									<textarea class="textarea" placeholder="{{ __('content.contact.message') }}" name="message"  v-model="formdata.message" required></textarea>
+									<textarea class="textarea" placeholder="Bericht" name="message"  v-model="formdata.message" required></textarea>
 								</div>
 								<p class="help is-danger">{{ $errors->first('message') }}</p>
 							</div>
@@ -56,7 +60,7 @@
 
 						<div class="field">
 							<div class="control">
-								<button class="button is-primary">{{ __('content.contact.send') }}</button>
+								<button class="button is-primary">Verzenden</button>
 							</div>
 						</div>
 					</form>

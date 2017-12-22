@@ -32,17 +32,17 @@
             Ook voor vloeren en wandtegels binnen en buiten kunt u bij ons terecht doordat we altijd de perfectie nastreven kan u er zeker van zijn kwaliteit te krijgen voor uw geld.
 Door onze jarenlange ervaring kan u bij ons terecht voor de plaatsing van de standaardtegel tot de meest exclusieve projecten.
         </section>
-        <div class="divider"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>      
+        <div class="divider" style="color:#2b9a23"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>      
 		<section class="section">
             <div class="columns">
                 <div class="column text-column">
-                    <h2>Snelle offerte</h2>
+                    <h2 style="border-color:#2b9a23">Snelle offerte</h2>
                     <p>
                     We komen bij u langs geven advies en maken gepaste offerte voor u op.        
                 </p>
                 </div>
                 <div class="column text-column">
-                    <h2>Een greep uit ons aanbod</h2>
+                    <h2 style="border-color:#2b9a23">Een greep uit ons aanbod</h2>
                     <p>
                         <ul>
                             <li>nieuwbouw en verbouwingen</li>
@@ -57,7 +57,7 @@ Door onze jarenlange ervaring kan u bij ons terecht voor de plaatsing van de sta
                     </p>
                 </div>
                 <div class="column text-column">
-                    <h2>Topservice</h2>
+                    <h2 style="border-color:#2b9a23">Topservice</h2>
                     <p>
                         Door de goede samenwerking met onze vaste toonzaal kunnen we u een zeer uitgebreid gamma aanbieden van A tot Z en een snelle levering garanderen. Zo kunnen we u een concurentiele prijs aanbieden.
                     </p>

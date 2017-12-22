@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\ContactMail;
 
 class ContactController extends Controller
 {
@@ -32,9 +33,11 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function send(Request $request)
     {
-        //
+        \Mail::to("info@example.com")->send(new ContactMail(request()));
+
+        return back()->with('success', 'Bedankt, uw formulier werd succesvol verzonden!');
     }
 
     /**

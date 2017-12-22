@@ -17,7 +17,6 @@ window.Vue = require('vue');
  */
 
 Vue.component('imageslider', require('./components/ImageSlider.vue'));
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -36,8 +35,23 @@ const app = new Vue({
             { id: 1, src: '/images/slides/tegelwerken/1.jpg', title: 'image 1', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, a excepturi fugiat nihil in deserunt, natus possimus est atque rem incidunt soluta. Itaque quis dolor perspiciatis natus vel, voluptate possimus.', url: null },
             { id: 2, src: '/images/slides/tegelwerken/2.jpg', title: 'image 2', description: 'this is the second image', url: null },
             { id: 3, src: '/images/slides/tegelwerken/3.jpg', title: 'image 3', description: 'this is the third image', url: null }
-        ]
-
+        ],
+        formdata: {
+            name: "",
+            email: "",
+            subject: "",
+            message: ""
+        },
+        success: false
+    },
+    methods: {
+        sendForm() {
+            axios.post('/contact', this.formdata).then((response) => {
+                console.log(response);
+                this.formdata = {};
+                this.success = true;
+            });
+        }
     }
 
 });

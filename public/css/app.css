@@ -3,7 +3,7 @@ a.navbar-item.is-active,
 .navbar-link:hover,
 .navbar-link.is-active {
   background-color: transparent;
-  color: #3097D1;
+  color: #ca4949;
 }
 
 .hero.is-primary .subtitle {
@@ -14561,8 +14561,16 @@ section.section {
   margin-bottom: 0 !important;
 }
 
+.button.is-primary {
+  background-color: #ca4949;
+}
+
+.button.is-primary:hover {
+  background-color: #c13838;
+}
+
 .divider {
-  color: #dcdcdc;
+  color: #ca4949;
   font-size: .8em;
   text-align: center;
   padding: 20px;
@@ -14668,7 +14676,7 @@ section.section {
   padding-left: 10px;
   font-weight: bold;
   text-align: left;
-  border-left: 4px solid;
+  border-left: 4px solid #ca4949;
   height: 30px;
   margin-bottom: 15px;
 }

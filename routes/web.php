@@ -32,4 +32,4 @@ Route::get('/maatwerk', function(){
 });
 
 Route::get('/contact', 'ContactController@index');
-Route::post('/maatwerk', 'ContactController@send');
+Route::post('/contact', 'ContactController@send');
