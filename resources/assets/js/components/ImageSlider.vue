@@ -3,13 +3,13 @@
 		<div class="slides">
 			<div class="slide" v-for="slide in slides">
 				<img :class="(animate) ? 'animate-image' : ''" :src="slide.src" alt="slide">
-				<div class="container">
+				<!-- <div class="container">
 					<div class="slide-caption">
 						<h1>{{ slide.title }}</h1>
 						<p>{{ slide.description }}</p>
 						<a v-if="slide.url" :href="slide.url" class="button-open">Meer informatie</a>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div class="slides-controls">
 				<span v-for="slide in slides">

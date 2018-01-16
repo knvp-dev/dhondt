@@ -26,8 +26,45 @@
 
 <section class="section">
 	<div class="container has-text-centered">
-		<h1 class="title">Metselwerken</h1>
-		<h2 class="subtitle">Nieuwbouw en verbouwingen</h2>
+		
+		<h1 class="title">Nieuwbouw</h1>
+        <div class="divider"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>
+        <section class="section">
+        
+        <div class="columns">
+            <div class="column text-column">
+                <h2>Offerte</h2>
+                <p>
+                    Voor ieder project wordt een gedetailleerde offerte opgesteld zo wel voor grote als kleinere projecten.
+Hier voor verwachten we een duidelijke meetstaat opgesteld door de aangestelde architect. 
+Zo kan alles duidelijk in rekening gebracht worden en alles vlot verlopen.
+                </p>
+            </div>
+            <div class="column text-column">
+                <h2>Coördinatie</h2>
+                <p>
+                    Werfvergaderingen zijn naturelijk een must, wekelijks wordt er vergaderd en van begin tot einde volgt nikolaj alles goed op zo kan er indien nodig nog eventuele wijzigingen aangebracht worden.
+Werfvergaderingen zijn natuurlijk een must, wekelijks wordt er vergaderd met de bouwheer, architect en aannemer om alle aandachtspunten te overlopen.
+                </p>
+            </div>
+            </div>
+            <div class="columns">
+            <div class="column text-column">
+                <h2>Conclusie ( succesformule )</h2>
+                <p>
+                    Door een goede samenwerking en duidelijke communicatie tussen bouwheer architect en aanemer wordt uw project zeker een succes!
+                </p>
+            </div>
+            <div class="column text-column">
+                <h2>Totaalprojecten</h2>
+                <p>
+                    Door onze jarenlange ervaring in de sector hebben we ook enkele goede contacten met betrouwbare en kwalitatieve aannemers die kunnen verder helpen uw project volledig af te werken.
+                </p>
+            </div>
+            </div>
+            </section>
+<section>
+            <h1 class="title">Verbouwingen</h1>
         <div class="divider"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>
         <section class="section">
         
@@ -60,6 +97,7 @@
                 </p>
             </div>
             </div>
+            </section>
             </section>
         </div>
     </div>

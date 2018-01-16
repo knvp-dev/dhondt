@@ -32637,26 +32637,7 @@ var render = function() {
             _c("img", {
               class: _vm.animate ? "animate-image" : "",
               attrs: { src: slide.src, alt: "slide" }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "slide-caption" }, [
-                _c("h1", [_vm._v(_vm._s(slide.title))]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(slide.description))]),
-                _vm._v(" "),
-                slide.url
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "button-open",
-                        attrs: { href: slide.url }
-                      },
-                      [_vm._v("Meer informatie")]
-                    )
-                  : _vm._e()
-              ])
-            ])
+            })
           ])
         }),
         _vm._v(" "),

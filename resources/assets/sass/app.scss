@@ -46,15 +46,15 @@ section.section{
 }
 
 .button.is-primary{
-  background-color:#ca4949;
+  background-color:#2b9a23;
 }
 
 .button.is-primary:hover{
-  background-color:darken(#ca4949,5%);
+  background-color:darken(#2b9a23,5%);
 }
 
 .divider{
-  color:#ca4949;
+  color:#2b9a23;
   font-size:.8em;
   text-align: center;
   padding:20px;
@@ -163,7 +163,7 @@ section.section{
     padding-left: 10px;
     font-weight: bold;
     text-align: left;
-    border-left: 4px solid #ca4949;
+    border-left: 4px solid #2b9a23;
     height: 30px;
     margin-bottom: 15px;
 }

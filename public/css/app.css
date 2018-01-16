@@ -14562,15 +14562,15 @@ section.section {
 }
 
 .button.is-primary {
-  background-color: #ca4949;
+  background-color: #2b9a23;
 }
 
 .button.is-primary:hover {
-  background-color: #c13838;
+  background-color: #25851e;
 }
 
 .divider {
-  color: #ca4949;
+  color: #2b9a23;
   font-size: .8em;
   text-align: center;
   padding: 20px;
@@ -14676,7 +14676,7 @@ section.section {
   padding-left: 10px;
   font-weight: bold;
   text-align: left;
-  border-left: 4px solid #ca4949;
+  border-left: 4px solid #2b9a23;
   height: 30px;
   margin-bottom: 15px;
 }
