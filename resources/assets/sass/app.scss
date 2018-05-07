@@ -21,24 +21,41 @@ body, html {
 	height: 100%;
 }
 
+.is-navbar-fixed{
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+  margin-top: -4.25rem;
+}
+
+.image-slider{
+  margin-top: 4.25rem;
+}
+
 .navbar-item{
-	font-size: .9em;
+  font-size: .9em;
+  color:white;
+}
+
+a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link.is-active {
+  background-color: transparent!important;
+  color: #e8d017;
 }
 
 a.navbar-item:hover{
-	background-color:white;
-	color:#6b6b6b;
+	
 }
 
 .navbar-logo{
-	padding:0;
+  padding:0;
+  margin-top: 20px;
 	position: absolute;
-    background-color: white;
-    width: 90px;
-    height: 90px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    z-index:9000;
+  background-color: white;
+  width: 90px;
+  height: 90px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  z-index:9000;
 }
 
 section.section{
@@ -46,22 +63,22 @@ section.section{
 }
 
 .button.is-primary{
-  background-color:#2b9a23;
+  background-color:#ffd509;
 }
 
 .button.is-primary:hover{
-  background-color:darken(#2b9a23,5%);
+  background-color:darken(#ffd509,5%);
 }
 
 .divider{
-  color:#2b9a23;
+  color:#ffd509;
   font-size:.8em;
   text-align: center;
   padding:20px;
 }
 
 ul{
-    text-align: left;
+  text-align: left;
 }
 
 .mb-20{
@@ -69,7 +86,7 @@ ul{
 }
 
 .navbar-item img{
-	max-height:4.75em!important;
+	//max-height:4.75em!important;
 }
 
 .is-2em{
@@ -83,10 +100,10 @@ h1.title{
 
 .hero-content >.subtitle{
 	text-align:left;
-    // color:#fff!important;
-    text-transform:uppercase;
-    font-size:1.5em;
-    font-family:"Open Sans";
+  // color:#fff!important;
+  text-transform:uppercase;
+  font-size:1.5em;
+  font-family:"Open Sans";
 	padding:20px;
 }
 
@@ -126,7 +143,7 @@ section.section{
 .parallax-1 { 
 	/* The image used */
 	background-image: url("/images/hero_01.jpg")!important;
-    min-height:250px;
+  min-height:250px;
 	/* Create the parallax scrolling effect */
 	background-attachment: fixed;
 	background-position: center;
@@ -137,7 +154,7 @@ section.section{
 .parallax-2 { 
 	/* The image used */
 	background-image: url("/images/hero_02.jpg")!important;
-    min-height:250px;
+  min-height:250px;
 	/* Create the parallax scrolling effect */
 	background-attachment: fixed;
 	background-position: center;
@@ -148,7 +165,7 @@ section.section{
 .parallax-3 { 
 	/* The image used */
 	background-image: url("/images/hero_03.jpg")!important;
-    min-height:250px;
+  min-height:250px;
 	/* Create the parallax scrolling effect */
 	background-attachment: fixed;
 	background-position: bottom;
@@ -156,39 +173,104 @@ section.section{
 	background-size: cover;
 }
 
+.footer{
+  background-color:#231F20;
+  >*{
+    color:white;
+  }
+  
+}
 
+.navbar-item img {
+  max-height: 100%!important;
+  border: 2px solid #ffd509;
+}
 
 .text-column h2{
 	font-size: 1.2em;
-    padding-left: 10px;
-    font-weight: bold;
-    text-align: left;
-    border-left: 4px solid #2b9a23;
-    height: 30px;
-    margin-bottom: 15px;
+  padding-left: 10px;
+  font-weight: bold;
+  text-align: left;
+  border-left: 4px solid #ffd509;
+  height: 30px;
+  margin-bottom: 15px;
 }
 
 .text-column p{
 	text-align:left;
 }
 
-@media (max-width:1023px) {
+.navbar{
+  background-color:#231F20;
+  min-height: 4.25rem;
+}
 
+.navbar-burger {
+  display:none!important;
+  cursor: pointer;
+  display: block;
+  height: 4.25rem;
+  position: relative;
+  width: 6.25rem;
+  margin-left: auto;
+  color: white;
+}
+
+.navbar-burger:hover{
+  color:#ffd509;
+}
+
+@media (max-width:1023px) {
+  
 	.navbar{
 		position:relative!important;
 		min-height:8rem;
 	}
-
+  
 	.navbar-end{
 		display:none;
 	}
-
+  
 	.navbar-item img {
-		max-height: 4.75rem;
+		//max-height: 4.75rem;
 		margin-top:15px;
 		width:250px;
-	}
-
+  }
+  
+  .navbar-burger{
+    display:block!important;
+  }
+  
+  .image-slider{
+    display:none;
+  }
+  
+  .navbar{
+    min-height: 4.25rem;
+  }
+  
+  .navbar-logo {
+    padding: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: absolute;
+    background-color: transparent;
+    width: 50px!important;
+    height: 90px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    z-index: 9000;
+  }
+  
+  .is-navbar-fixed{
+    margin-top:0!important;
+    position:relative;
+  }
+  
+  .navbar-item img{
+    margin-top:0!important;
+  }
+  
 }
 
 .gallery { 
@@ -216,205 +298,205 @@ section.section{
   height: auto; 
 }
 // @media screen and (max-width: 400px) {
-//   .gallery div { margin: 0; }
-//   .gallery { padding: 0; }
+  //   .gallery div { margin: 0; }
+  //   .gallery { padding: 0; }
   
-// }
-
-/*!
- * baguetteBox.js
- * @author  feimosi
- * @version 1.8.1
- * @url https://github.com/feimosi/baguetteBox.js
- */
-#baguetteBox-overlay {
-  display: none;
-  opacity: 0;
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000000;
-  background-color: #222;
-  background-color: rgba(0, 0, 0, 0.8);
-  -webkit-transition: opacity .5s ease;
-  transition: opacity .5s ease; }
-  #baguetteBox-overlay.visible {
-    opacity: 1; }
-  #baguetteBox-overlay .full-image {
-    display: inline-block;
-    position: relative;
+  // }
+  
+  /*!
+  * baguetteBox.js
+  * @author  feimosi
+  * @version 1.8.1
+  * @url https://github.com/feimosi/baguetteBox.js
+  */
+  #baguetteBox-overlay {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    text-align: center; }
-    #baguetteBox-overlay .full-image figure {
-      display: inline;
-      margin: 0;
-      height: 100%; }
-    #baguetteBox-overlay .full-image img {
-      display: inline-block;
-      width: auto;
-      height: auto;
-      max-height: 100%;
-      max-width: 100%;
-      vertical-align: middle;
-      -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-           box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); }
-    #baguetteBox-overlay .full-image figcaption {
-      display: block;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      line-height: 1.8;
-      white-space: normal;
-      color: #ccc;
-      background-color: #000;
-      background-color: rgba(0, 0, 0, 0.6);
-      font-family: sans-serif; }
-    #baguetteBox-overlay .full-image:before {
-      content: "";
-      display: inline-block;
-      height: 50%;
-      width: 1px;
-      margin-right: -1px; }
-
-#baguetteBox-slider {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  white-space: nowrap;
-  -webkit-transition: left .4s ease, -webkit-transform .4s ease;
-  transition: left .4s ease, -webkit-transform .4s ease;
-  transition: left .4s ease, transform .4s ease;
-  transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease, -moz-transform .4s ease; }
-  #baguetteBox-slider.bounce-from-right {
-    -webkit-animation: bounceFromRight .4s ease-out;
-            animation: bounceFromRight .4s ease-out; }
-  #baguetteBox-slider.bounce-from-left {
-    -webkit-animation: bounceFromLeft .4s ease-out;
-            animation: bounceFromLeft .4s ease-out; }
-
-@-webkit-keyframes bounceFromRight {
-  0% {
-    margin-left: 0; }
-  50% {
-    margin-left: -30px; }
-  100% {
-    margin-left: 0; } }
-
-@keyframes bounceFromRight {
-  0% {
-    margin-left: 0; }
-  50% {
-    margin-left: -30px; }
-  100% {
-    margin-left: 0; } }
-
-@-webkit-keyframes bounceFromLeft {
-  0% {
-    margin-left: 0; }
-  50% {
-    margin-left: 30px; }
-  100% {
-    margin-left: 0; } }
-
-@keyframes bounceFromLeft {
-  0% {
-    margin-left: 0; }
-  50% {
-    margin-left: 30px; }
-  100% {
-    margin-left: 0; } }
-
-.baguetteBox-button#next-button, .baguetteBox-button#previous-button {
-  top: 50%;
-  top: calc(50% - 30px);
-  width: 44px;
-  height: 60px; }
-
-.baguetteBox-button {
-  position: absolute;
-  cursor: pointer;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  -moz-border-radius: 15%;
-       border-radius: 15%;
-  background-color: #323232;
-  background-color: rgba(50, 50, 50, 0.5);
-  color: #ddd;
-  font: 1.6em sans-serif;
-  -webkit-transition: background-color .4s ease;
-  transition: background-color .4s ease; }
-  .baguetteBox-button:focus, .baguetteBox-button:hover {
-    background-color: rgba(50, 50, 50, 0.9); }
-  .baguetteBox-button#next-button {
-    right: 2%; }
-  .baguetteBox-button#previous-button {
-    left: 2%; }
-  .baguetteBox-button#close-button {
-    top: 20px;
-    right: 2%;
-    right: calc(2% + 6px);
-    width: 30px;
-    height: 30px; }
-  .baguetteBox-button svg {
-    position: absolute;
-    left: 0;
-    top: 0; }
-
-/*
-    Preloader
-    Borrowed from http://tobiasahlin.com/spinkit/
-*/
-.baguetteBox-spinner {
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -20px;
-  margin-left: -20px; }
-
-.baguetteBox-double-bounce1,
-.baguetteBox-double-bounce2 {
-  width: 100%;
-  height: 100%;
-  -moz-border-radius: 50%;
-       border-radius: 50%;
-  background-color: #fff;
-  opacity: .6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-animation: bounce 2s infinite ease-in-out;
-          animation: bounce 2s infinite ease-in-out; }
-
-.baguetteBox-double-bounce2 {
-  -webkit-animation-delay: -1s;
-          animation-delay: -1s; }
-
-@-webkit-keyframes bounce {
-  0%, 100% {
-    -webkit-transform: scale(0);
-            transform: scale(0); }
-  50% {
-    -webkit-transform: scale(1);
-            transform: scale(1); } }
-
-@keyframes bounce {
-  0%, 100% {
-    -webkit-transform: scale(0);
-       -moz-transform: scale(0);
-            transform: scale(0); }
-  50% {
-    -webkit-transform: scale(1);
-       -moz-transform: scale(1);
-            transform: scale(1); } }
+    z-index: 1000000;
+    background-color: #222;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-transition: opacity .5s ease;
+    transition: opacity .5s ease; }
+    #baguetteBox-overlay.visible {
+      opacity: 1; }
+      #baguetteBox-overlay .full-image {
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center; }
+        #baguetteBox-overlay .full-image figure {
+          display: inline;
+          margin: 0;
+          height: 100%; }
+          #baguetteBox-overlay .full-image img {
+            display: inline-block;
+            width: auto;
+            height: auto;
+            max-height: 100%;
+            max-width: 100%;
+            vertical-align: middle;
+            -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); }
+            #baguetteBox-overlay .full-image figcaption {
+              display: block;
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+              text-align: center;
+              line-height: 1.8;
+              white-space: normal;
+              color: #ccc;
+              background-color: #000;
+              background-color: rgba(0, 0, 0, 0.6);
+              font-family: sans-serif; }
+              #baguetteBox-overlay .full-image:before {
+                content: "";
+                display: inline-block;
+                height: 50%;
+                width: 1px;
+                margin-right: -1px; }
+                
+                #baguetteBox-slider {
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                  width: 100%;
+                  white-space: nowrap;
+                  -webkit-transition: left .4s ease, -webkit-transform .4s ease;
+                  transition: left .4s ease, -webkit-transform .4s ease;
+                  transition: left .4s ease, transform .4s ease;
+                  transition: left .4s ease, transform .4s ease, -webkit-transform .4s ease, -moz-transform .4s ease; }
+                  #baguetteBox-slider.bounce-from-right {
+                    -webkit-animation: bounceFromRight .4s ease-out;
+                    animation: bounceFromRight .4s ease-out; }
+                    #baguetteBox-slider.bounce-from-left {
+                      -webkit-animation: bounceFromLeft .4s ease-out;
+                      animation: bounceFromLeft .4s ease-out; }
+                      
+                      @-webkit-keyframes bounceFromRight {
+                        0% {
+                          margin-left: 0; }
+                          50% {
+                            margin-left: -30px; }
+                            100% {
+                              margin-left: 0; } }
+                              
+                              @keyframes bounceFromRight {
+                                0% {
+                                  margin-left: 0; }
+                                  50% {
+                                    margin-left: -30px; }
+                                    100% {
+                                      margin-left: 0; } }
+                                      
+                                      @-webkit-keyframes bounceFromLeft {
+                                        0% {
+                                          margin-left: 0; }
+                                          50% {
+                                            margin-left: 30px; }
+                                            100% {
+                                              margin-left: 0; } }
+                                              
+                                              @keyframes bounceFromLeft {
+                                                0% {
+                                                  margin-left: 0; }
+                                                  50% {
+                                                    margin-left: 30px; }
+                                                    100% {
+                                                      margin-left: 0; } }
+                                                      
+                                                      .baguetteBox-button#next-button, .baguetteBox-button#previous-button {
+                                                        top: 50%;
+                                                        top: calc(50% - 30px);
+                                                        width: 44px;
+                                                        height: 60px; }
+                                                        
+                                                        .baguetteBox-button {
+                                                          position: absolute;
+                                                          cursor: pointer;
+                                                          outline: none;
+                                                          padding: 0;
+                                                          margin: 0;
+                                                          border: 0;
+                                                          -moz-border-radius: 15%;
+                                                          border-radius: 15%;
+                                                          background-color: #323232;
+                                                          background-color: rgba(50, 50, 50, 0.5);
+                                                          color: #ddd;
+                                                          font: 1.6em sans-serif;
+                                                          -webkit-transition: background-color .4s ease;
+                                                          transition: background-color .4s ease; }
+                                                          .baguetteBox-button:focus, .baguetteBox-button:hover {
+                                                            background-color: rgba(50, 50, 50, 0.9); }
+                                                            .baguetteBox-button#next-button {
+                                                              right: 2%; }
+                                                              .baguetteBox-button#previous-button {
+                                                                left: 2%; }
+                                                                .baguetteBox-button#close-button {
+                                                                  top: 20px;
+                                                                  right: 2%;
+                                                                  right: calc(2% + 6px);
+                                                                  width: 30px;
+                                                                  height: 30px; }
+                                                                  .baguetteBox-button svg {
+                                                                    position: absolute;
+                                                                    left: 0;
+                                                                    top: 0; }
+                                                                    
+                                                                    /*
+                                                                    Preloader
+                                                                    Borrowed from http://tobiasahlin.com/spinkit/
+                                                                    */
+                                                                    .baguetteBox-spinner {
+                                                                      width: 40px;
+                                                                      height: 40px;
+                                                                      display: inline-block;
+                                                                      position: absolute;
+                                                                      top: 50%;
+                                                                      left: 50%;
+                                                                      margin-top: -20px;
+                                                                      margin-left: -20px; }
+                                                                      
+                                                                      .baguetteBox-double-bounce1,
+                                                                      .baguetteBox-double-bounce2 {
+                                                                        width: 100%;
+                                                                        height: 100%;
+                                                                        -moz-border-radius: 50%;
+                                                                        border-radius: 50%;
+                                                                        background-color: #fff;
+                                                                        opacity: .6;
+                                                                        position: absolute;
+                                                                        top: 0;
+                                                                        left: 0;
+                                                                        -webkit-animation: bounce 2s infinite ease-in-out;
+                                                                        animation: bounce 2s infinite ease-in-out; }
+                                                                        
+                                                                        .baguetteBox-double-bounce2 {
+                                                                          -webkit-animation-delay: -1s;
+                                                                          animation-delay: -1s; }
+                                                                          
+                                                                          @-webkit-keyframes bounce {
+                                                                            0%, 100% {
+                                                                              -webkit-transform: scale(0);
+                                                                              transform: scale(0); }
+                                                                              50% {
+                                                                                -webkit-transform: scale(1);
+                                                                                transform: scale(1); } }
+                                                                                
+                                                                                @keyframes bounce {
+                                                                                  0%, 100% {
+                                                                                    -webkit-transform: scale(0);
+                                                                                    -moz-transform: scale(0);
+                                                                                    transform: scale(0); }
+                                                                                    50% {
+                                                                                      -webkit-transform: scale(1);
+                                                                                      -moz-transform: scale(1);
+                                                                                      transform: scale(1); } }

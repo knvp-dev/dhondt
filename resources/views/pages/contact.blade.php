@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+<imageslider 
+    :slides='slides2' 
+    :animate='true' 
+    :delay='8000'>
+</imageslider>
 <div id="contact">
 
 	<section class="section">
@@ -14,7 +18,7 @@
 			<div class="divider"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></div>
 			<div class="columns">
 				<div class="column">
-					<img src="images/logo.svg" alt="d'hondt" class="form-logo" width="400px">
+					<img src="images/logo.png" alt="d'hondt" class="form-logo" width="400px">
 				</div>
 
 				<div class="column">

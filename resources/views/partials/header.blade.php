@@ -1,8 +1,8 @@
-<nav class="navbar has-shadow">
+<nav class="navbar is-navbar-fixed has-shadow">
 	<div class="container">
 		<div class="navbar-start">
 			<a class="navbar-item navbar-logo" href="/">
-				<img src="images/logo.svg" width="100%" height="150" alt="Dhondt">
+				<img src="images/logo.png" width="100%" height="150" alt="Dhondt">
 			</a>
 		</div>
 
@@ -20,6 +20,14 @@
 				Contact
 			</a>
 		</div>
+
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
+		
 
 	</div>
 </nav>

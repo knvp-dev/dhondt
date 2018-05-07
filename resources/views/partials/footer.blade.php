@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="footer-content">
 			<div class="has-text-centered">
-				<img src="/images/logo.svg" alt="" width="50">
+				<img src="/images/logo.png" alt="" width="50">
 				<br><br>
 				<p>
 				Nikolaj d'hondt <br>
