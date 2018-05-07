@@ -181,6 +181,17 @@ section.section{
   
 }
 
+.mobile-menu-active{
+  display:flex!important;
+  align-items:center;
+  flex-direction: column;
+  background-color:#231F20;
+  padding-bottom:20px;
+  >a{
+    padding:1rem;
+  }
+}
+
 .navbar-item img {
   max-height: 100%!important;
   border: 2px solid #ffd509;
@@ -244,6 +255,8 @@ section.section{
   .image-slider{
     display:none;
   }
+
+
   
   .navbar{
     min-height: 4.25rem;

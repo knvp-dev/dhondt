@@ -43798,6 +43798,10 @@ var app = new Vue({
                 _this.formdata = {};
                 _this.success = true;
             });
+        },
+        toggleMobileMenu: function toggleMobileMenu() {
+            console.log('toggle');
+            $('.navbar-end').toggleClass('mobile-menu-active');
         }
     }
 

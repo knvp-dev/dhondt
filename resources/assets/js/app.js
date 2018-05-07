@@ -51,6 +51,10 @@ const app = new Vue({
                 this.formdata = {};
                 this.success = true;
             });
+        },
+        toggleMobileMenu(){
+            console.log('toggle');
+            $('.navbar-end').toggleClass('mobile-menu-active');
         }
     }
 

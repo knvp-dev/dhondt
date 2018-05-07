@@ -6,6 +6,12 @@
 			</a>
 		</div>
 
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="toggleMobileMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+
 		<div class="navbar-end">
 			<a class="navbar-item" href="/metselwerken">
 				Metselwerken
@@ -21,11 +27,7 @@
 			</a>
 		</div>
 
-		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
+		
 
 		
 
