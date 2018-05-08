@@ -37,6 +37,10 @@ body, html {
   color:white;
 }
 
+.has-yellow-border{
+  border:2px solid #e8d017;
+}
+
 a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link.is-active {
   background-color: transparent!important;
   color: #e8d017;
