@@ -38,12 +38,12 @@ body, html {
 }
 
 .has-yellow-border{
-  border:2px solid #e8d017;
+  border:2px solid $accent;
 }
 
 a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link.is-active {
   background-color: transparent!important;
-  color: #e8d017;
+  color: $accent;
 }
 
 a.navbar-item:hover{
@@ -67,15 +67,15 @@ section.section{
 }
 
 .button.is-primary{
-  background-color:#ffd509;
+  background-color:$accent;
 }
 
 .button.is-primary:hover{
-  background-color:darken(#ffd509,5%);
+  background-color:darken($accent,5%);
 }
 
 .divider{
-  color:#ffd509;
+  color:$accent;
   font-size:.8em;
   text-align: center;
   padding:20px;
@@ -179,6 +179,8 @@ section.section{
 
 .footer{
   background-color:#231F20;
+  
+  background-size: cover;
   >*{
     color:white;
   }
@@ -198,7 +200,7 @@ section.section{
 
 .navbar-item img {
   max-height: 100%!important;
-  border: 2px solid #ffd509;
+  border: 2px solid $accent;
 }
 
 .text-column h2{
@@ -206,7 +208,7 @@ section.section{
   padding-left: 10px;
   font-weight: bold;
   text-align: left;
-  border-left: 4px solid #ffd509;
+  border-left: 4px solid $accent;
   height: 30px;
   margin-bottom: 15px;
 }

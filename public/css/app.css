@@ -14606,7 +14606,7 @@ html {
 }
 
 .has-yellow-border {
-  border: 2px solid #e8d017;
+  border: 2px solid #FFED00;
 }
 
 a.navbar-item:hover,
@@ -14614,7 +14614,7 @@ a.navbar-item.is-active,
 a.navbar-link:hover,
 a.navbar-link.is-active {
   background-color: transparent !important;
-  color: #e8d017;
+  color: #FFED00;
 }
 
 .navbar-logo {
@@ -14634,15 +14634,15 @@ section.section {
 }
 
 .button.is-primary {
-  background-color: #ffd509;
+  background-color: #FFED00;
 }
 
 .button.is-primary:hover {
-  background-color: #efc600;
+  background-color: #e6d500;
 }
 
 .divider {
-  color: #ffd509;
+  color: #FFED00;
   font-size: .8em;
   text-align: center;
   padding: 20px;
@@ -14741,6 +14741,7 @@ section.section {
 
 .footer {
   background-color: #231F20;
+  background-size: cover;
 }
 
 .footer > * {
@@ -14768,7 +14769,7 @@ section.section {
 
 .navbar-item img {
   max-height: 100% !important;
-  border: 2px solid #ffd509;
+  border: 2px solid #FFED00;
 }
 
 .text-column h2 {
@@ -14776,7 +14777,7 @@ section.section {
   padding-left: 10px;
   font-weight: bold;
   text-align: left;
-  border-left: 4px solid #ffd509;
+  border-left: 4px solid #FFED00;
   height: 30px;
   margin-bottom: 15px;
 }
