@@ -74,7 +74,7 @@ Door onze jarenlange ervaring kan u bij ons terecht voor de plaatsing van de sta
                 <h1 class="title">Realisaties</h1>
 
                 <div class="grid gallery">
-                    @for($i=1;$i<25;$i++)
+                    @for($i=1;$i<50;$i++)
                     <a href="/images/fotos/tegelwerken/{{ $i }}.jpg" class="grid-item"><img src="images/fotos/tegelwerken/{{ $i }}.jpg" alt></a>
                     @endfor
                 </div>
