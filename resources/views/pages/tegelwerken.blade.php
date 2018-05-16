@@ -76,6 +76,7 @@ Door onze jarenlange ervaring kan u bij ons terecht voor de plaatsing van de sta
                 <div class="grid gallery">
                     @for($i=1;$i<50;$i++)
                     <a href="/images/fotos/tegelwerken/{{ $i }}.jpg" class="grid-item"><img src="images/fotos/tegelwerken/{{ $i }}.jpg" alt></a>
+                    <a href="/images/fotos/tegelwerken/{{ $i }}.JPG" class="grid-item"><img src="images/fotos/tegelwerken/{{ $i }}.JPG" alt></a>
                     @endfor
                 </div>
             </div>
