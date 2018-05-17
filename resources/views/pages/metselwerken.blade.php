@@ -43,14 +43,13 @@ Zo kan alles duidelijk in rekening gebracht worden en alles vlot verlopen.
             <div class="column text-column">
                 <h2>Coördinatie</h2>
                 <p>
-                    Werfvergaderingen zijn naturelijk een must, wekelijks wordt er vergaderd en van begin tot einde volgt nikolaj alles goed op zo kan er indien nodig nog eventuele wijzigingen aangebracht worden.
 Werfvergaderingen zijn natuurlijk een must, wekelijks wordt er vergaderd met de bouwheer, architect en aannemer om alle aandachtspunten te overlopen.
                 </p>
             </div>
             </div>
             <div class="columns">
             <div class="column text-column">
-                <h2>Conclusie ( succesformule )</h2>
+                <h2>Conclusie</h2>
                 <p>
                     Door een goede samenwerking en duidelijke communicatie tussen bouwheer architect en aanemer wordt uw project zeker een succes!
                 </p>
