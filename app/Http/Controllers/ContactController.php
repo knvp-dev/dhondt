@@ -35,7 +35,7 @@ class ContactController extends Controller
      */
     public function send(Request $request)
     {
-        \Mail::to("dhondt88@hotmail.com")->send(new ContactMail(request()));
+        \Mail::to("info@nikolajdhondt.be")->send(new ContactMail(request()));
 
         return back()->with('success', 'Bedankt, uw formulier werd succesvol verzonden!');
     }
