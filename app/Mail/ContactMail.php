@@ -22,12 +22,6 @@ class ContactMail extends Mailable
     public function __construct(Request $request)
     {
         $this->data = $request->all();
-        $this->to = ["recipients" =>
-                        [
-                            "name" => 'nikolaj',
-                            "address" => 'info@nikolajdhondt.be'
-                         ]
-                    ];
     }
 
     /**
